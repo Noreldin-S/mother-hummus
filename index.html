@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mother Hummus - small-batch hummus. Six ingredients, five flavors, no preservatives.">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<title>Mother Hummus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ink:#17231A;
+  --ink-2:#41523F;
+  --ink-3:#6E7F69;
+  --ground:#EFF2E7;
+  --surface:#FBFCF7;
+  --surface-2:#E4EAD6;
+  --leaf:#4C8B2B;
+  --leaf-deep:#2F5C1A;
+  --lemon:#F0C53C;
+  --chickpea:#E4D6B4;
+  --paprika:#C0492F;
+  --rule:#CFD9BE;
+  --rule-strong:#17231A;
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --wrap:1120px;
+  --gutter:clamp(20px,5vw,64px);
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#E8EFE0;
+    --ink-2:#B3C1AC;
+    --ink-3:#849680;
+    --ground:#111710;
+    --surface:#192117;
+    --surface-2:#232D20;
+    --leaf:#93CC5B;
+    --leaf-deep:#B6E183;
+    --lemon:#F2D164;
+    --chickpea:#D8C79F;
+    --paprika:#E0715A;
+    --rule:#2E3A2A;
+    --rule-strong:#E8EFE0;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E8EFE0;
+  --ink-2:#B3C1AC;
+  --ink-3:#849680;
+  --ground:#111710;
+  --surface:#192117;
+  --surface-2:#232D20;
+  --leaf:#93CC5B;
+  --leaf-deep:#B6E183;
+  --lemon:#F2D164;
+  --chickpea:#D8C79F;
+  --paprika:#E0715A;
+  --rule:#2E3A2A;
+  --rule-strong:#E8EFE0;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.025em;line-height:1.02}
+p{margin:0}
+a{color:inherit}
+
+:where(a,button,input):focus-visible{
+  outline:2.5px solid var(--leaf);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.75rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--leaf-deep);
+}
+
+/* ---------- header ---------- */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  background:var(--ground);
+}
+.masthead .wrap{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  padding-block:18px;
+  flex-wrap:wrap;
+}
+.mark{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:1.2rem;
+  letter-spacing:-.04em;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  text-decoration:none;
+  margin-right:auto;
+}
+.mark i{
+  width:16px;height:16px;border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%, var(--leaf) 0 22%, transparent 23%),
+    conic-gradient(from 20deg, #E4D6B4, #CFBE93, #E4D6B4);
+  flex:none;
+  display:block;
+}
+.masthead nav{
+  display:flex;gap:22px;flex-wrap:wrap;
+  font-size:.9rem;font-weight:500;
+}
+.masthead nav a{text-decoration:none;color:var(--ink-2)}
+.masthead nav a:hover{color:var(--leaf-deep)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;
+  font-family:var(--body);
+  font-weight:600;
+  font-size:.95rem;
+  padding:13px 22px;
+  border-radius:999px;
+  text-decoration:none;
+  border:1.5px solid transparent;
+  transition:transform .14s ease, background-color .14s ease;
+}
+.btn-solid{background:var(--leaf-deep);color:var(--ground);}
+.btn-solid:hover{transform:translateY(-2px)}
+.btn-line{border-color:var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--ground);transform:translateY(-2px)}
+
+@media (prefers-reduced-motion:reduce){
+  .btn,.flavor{transition:none!important}
+  .btn:hover,.flavor:hover{transform:none!important}
+}
+
+/* ---------- hero ---------- */
+.hero .wrap{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:clamp(28px,5vw,72px);
+  align-items:center;
+  padding-block:clamp(44px,7vw,84px);
+}
+.hero h1{
+  font-size:clamp(3.1rem,8.6vw,6.1rem);
+  font-weight:800;
+  letter-spacing:-.045em;
+  margin-block:18px 22px;
+}
+.hero h1 em{
+  font-style:normal;
+  display:block;
+  color:var(--leaf-deep);
+}
+.hero .lede{
+  font-size:1.16rem;
+  color:var(--ink-2);
+  max-width:46ch;
+}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+
+.bowl{
+  width:100%;
+  max-width:460px;
+  aspect-ratio:1/1;
+  margin-inline:auto;
+  display:block;
+  filter:drop-shadow(0 26px 40px rgba(23,35,26,.22));
+}
+
+/* ---------- six things ---------- */
+.six{
+  background:var(--ink);
+  color:var(--ground);
+}
+.six .wrap{padding-block:clamp(38px,5vw,56px)}
+.six h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--ground)}
+.six .note{color:#A9BBA2;margin-top:10px;max-width:52ch;font-size:1rem}
+.six ol{
+  list-style:none;
+  margin:26px 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:1px;
+  background:#2B3A28;
+  border:1px solid #2B3A28;
+}
+.six li{
+  background:var(--ink);
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.six li b{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:1.05rem;
+  letter-spacing:-.02em;
+}
+.six li span{
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:#8FB37C;
+  letter-spacing:.04em;
+}
+
+/* ---------- flavors ---------- */
+.flavors .wrap{padding-block:clamp(56px,8vw,96px)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:38px}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:800}
+.sec-head p{color:var(--ink-2);max-width:40ch}
+
+.flavor-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:28px;
+}
+.flavor{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  text-align:left;
+  transition:transform .16s ease;
+}
+.flavor:hover{transform:translateY(-4px)}
+.lid{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  position:relative;
+  box-shadow:inset 0 0 0 9px rgba(255,255,255,.55), 0 10px 22px rgba(23,35,26,.14);
+}
+.lid::after{
+  content:"";
+  position:absolute;
+  inset:22%;
+  border-radius:50%;
+  background:rgba(255,255,255,.28);
+}
+.lid b{
+  position:relative;
+  z-index:1;
+  font-family:var(--display);
+  font-weight:800;
+  font-size:.8rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#1B2A19;
+}
+.flavor h3{font-size:1.22rem;font-weight:700}
+.flavor p{color:var(--ink-2);font-size:.97rem}
+.flavor .wt{
+  font-family:var(--mono);
+  font-size:.74rem;
+  color:var(--ink-3);
+  letter-spacing:.05em;
+  margin-top:auto;
+  padding-top:6px;
+}
+
+/* ---------- method ---------- */
+.method{background:var(--surface-2)}
+.method .wrap{padding-block:clamp(56px,8vw,96px)}
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+  gap:34px 30px;
+  margin-top:40px;
+}
+.step{display:flex;flex-direction:column;gap:10px}
+.step .n{
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--leaf-deep);
+  letter-spacing:.1em;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--leaf);
+}
+.step h3{font-size:1.3rem;font-weight:700;margin-top:4px}
+.step p{color:var(--ink-2);font-size:.97rem}
+.step .spec{font-family:var(--mono);font-size:.76rem;color:var(--ink-3)}
+
+/* ---------- specs band ---------- */
+.specs .wrap{
+  padding-block:clamp(56px,8vw,96px);
+  display:grid;
+  grid-template-columns:minmax(0,320px) minmax(0,1fr);
+  gap:clamp(30px,5vw,64px);
+  align-items:start;
+}
+
+.nutrition{
+  background:var(--surface);
+  color:var(--ink);
+  border:1.5px solid var(--rule-strong);
+  padding:14px 16px 16px;
+  font-family:var(--body);
+  font-size:.86rem;
+  line-height:1.35;
+}
+.nutrition h3{
+  font-family:var(--display);
+  font-size:1.9rem;
+  font-weight:800;
+  letter-spacing:-.03em;
+  line-height:.95;
+}
+.nutrition .serv{display:flex;justify-content:space-between;gap:10px;padding:3px 0}
+.r-thin{border-bottom:1px solid var(--rule-strong)}
+.r-med{border-bottom:5px solid var(--rule-strong)}
+.r-thick{border-bottom:9px solid var(--rule-strong)}
+.nutrition .cal{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:3px 0 2px;
+}
+.nutrition .cal span:first-child{font-weight:700;font-size:1rem}
+.nutrition .cal span:last-child{font-family:var(--display);font-weight:800;font-size:2.05rem;letter-spacing:-.03em}
+.nutrition .dv{text-align:right;font-weight:700;font-size:.76rem;padding:3px 0}
+.nutrition dl{margin:0;font-variant-numeric:tabular-nums}
+.nutrition .row{display:flex;justify-content:space-between;gap:12px;padding:3px 0;border-bottom:1px solid var(--rule)}
+.nutrition .row.in{padding-left:15px}
+.nutrition .row.in2{padding-left:30px}
+.nutrition .row b{font-weight:700}
+.nutrition .foot{font-size:.7rem;color:var(--ink-2);padding-top:8px;line-height:1.45}
+
+.trade h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin-bottom:14px}
+.trade > p{color:var(--ink-2);max-width:52ch;margin-bottom:26px}
+.trade dl{
+  margin:0;
+  font-family:var(--mono);
+  font-size:.86rem;
+  font-variant-numeric:tabular-nums;
+  border-top:1px solid var(--rule);
+}
+.trade .line{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding:11px 0;
+  border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;
+}
+.trade .line dt{color:var(--ink-3);letter-spacing:.04em}
+.trade .line dd{margin:0;text-align:right;font-weight:500}
+.trade .cta{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.trade .cta small{color:var(--ink-3);font-family:var(--mono);font-size:.76rem}
+
+/* ---------- find ---------- */
+.find{background:var(--leaf-deep);color:#F3F7EC}
+.find .wrap{padding-block:clamp(52px,7vw,84px);text-align:left}
+.find h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;color:#F3F7EC;max-width:18ch}
+.find p{color:#CBE0B8;max-width:50ch;margin-top:16px}
+.find .btn-line{border-color:#F3F7EC;color:#F3F7EC;margin-top:28px}
+.find .btn-line:hover{background:#F3F7EC;color:var(--leaf-deep)}
+.find .case{
+  margin-top:34px;
+  padding-top:22px;
+  border-top:1px solid rgba(243,247,236,.28);
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:#B9D4A3;
+  letter-spacing:.04em;
+  display:flex;
+  gap:26px;
+  flex-wrap:wrap;
+}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--rule)}
+footer .wrap{
+  padding-block:34px 44px;
+  display:flex;
+  gap:22px 40px;
+  flex-wrap:wrap;
+  align-items:baseline;
+  font-size:.88rem;
+  color:var(--ink-2);
+}
+footer .mark{font-size:1rem;margin-right:auto}
+footer a{color:var(--ink-2)}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero .bowl{max-width:330px}
+  .specs .wrap{grid-template-columns:1fr}
+}
+</style>
+<style>
+  html{-webkit-text-size-adjust:100%}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="mark" href="#top"><i></i>Mother Hummus</a>
+    <nav>
+      <a href="#flavors">Flavors</a>
+      <a href="#method">How it's made</a>
+      <a href="#specs">Nutrition</a>
+      <a href="#trade">Wholesale</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Refrigerated · Made in small batches</p>
+        <h1>Hummus the<br>long way<em>round.</em></h1>
+        <p class="lede">Chickpeas soaked overnight and peeled by hand, stone-milled tahini, lemons squeezed the morning we blend. Six ingredients, no preservatives, twenty-one days of shelf life — because that's what honest hummus gets you.</p>
+        <div class="cta">
+          <a class="btn btn-solid" href="#flavors">See the five flavors</a>
+          <a class="btn btn-line" href="#trade">Wholesale &amp; case packs</a>
+        </div>
+      </div>
+      <canvas class="bowl" id="bowl" width="920" height="920" role="img" aria-label="A bowl of hummus seen from above, swirled with a spoon, pooled with olive oil and scattered with whole chickpeas and paprika."></canvas>
+    </div>
+  </section>
+
+  <section class="six">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#8FB37C">The whole ingredient list</p>
+      <h2>Six things. That's the recipe.</h2>
+      <p class="note">If you can't pronounce it, it isn't in the tub. No gums, no stabilizers, no potassium sorbate to stretch the date.</p>
+      <ol>
+        <li><b>Chickpeas</b><span>KABULI, DRY</span></li>
+        <li><b>Tahini</b><span>STONE-MILLED</span></li>
+        <li><b>Lemon</b><span>JUICED DAILY</span></li>
+        <li><b>Garlic</b><span>FRESH CLOVES</span></li>
+        <li><b>Olive oil</b><span>EXTRA VIRGIN</span></li>
+        <li><b>Sea salt</b><span>FINE</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="flavors" id="flavors">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Five lids,<br>one mother recipe.</h2>
+        <p>Every flavor starts from the same base batch. What changes is what goes on top — folded in at the end, never blended flat.</p>
+      </div>
+      <div class="flavor-grid">
+
+        <article class="flavor">
+          <div class="lid" style="background:radial-gradient(circle at 38% 32%, #EFE3C6, #DCCBA2 70%)"><b>Original</b></div>
+          <h3>Original</h3>
+          <p>The base batch, untouched. Whipped with ice water until it's light enough to hold a spoon-swirl.</p>
+          <p class="wt">NET WT 10 OZ (283 g)</p>
+        </article>
+
+        <article class="flavor">
+          <div class="lid" style="background:radial-gradient(circle at 38% 32%, #D6DFA8, #A8B871 70%)"><b>Za'atar</b></div>
+          <h3>Za'atar &amp; Olive Oil</h3>
+          <p>Wild thyme, toasted sesame and sumac, stirred through with a heavy pour of green olive oil.</p>
+          <p class="wt">NET WT 10 OZ (283 g)</p>
+        </article>
+
+        <article class="flavor">
+          <div class="lid" style="background:radial-gradient(circle at 38% 32%, #F6E4A4, #E4C75C 70%)"><b>Lemon</b></div>
+          <h3>Charred Lemon</h3>
+          <p>Lemon halves blistered on the flat-top before juicing. Sharp up front, smoky underneath.</p>
+          <p class="wt">NET WT 10 OZ (283 g)</p>
+        </article>
+
+        <article class="flavor">
+          <div class="lid" style="background:radial-gradient(circle at 38% 32%, #EDB9A0, #CF7358 70%)"><b>Harissa</b></div>
+          <h3>Harissa Rose</h3>
+          <p>Slow-bloomed chilies with dried rose petal. Warm rather than hot — it builds and then lets go.</p>
+          <p class="wt">NET WT 10 OZ (283 g)</p>
+        </article>
+
+        <article class="flavor">
+          <div class="lid" style="background:radial-gradient(circle at 38% 32%, #E8D6B2, #C9A874 70%)"><b>Pine Nut</b></div>
+          <h3>Toasted Pine Nut</h3>
+          <p>Pine nuts browned in butter-clear olive oil and spooned over whole, so they stay crisp in the tub.</p>
+          <p class="wt">NET WT 10 OZ (283 g)</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="method" id="method">
+    <div class="wrap">
+      <p class="eyebrow">Four steps, start to lid</p>
+      <h2 style="font-size:clamp(2rem,4.4vw,3.1rem);font-weight:800">Most of this<br>is just waiting.</h2>
+      <div class="steps">
+
+        <div class="step">
+          <p class="n">STEP 01 — SOAK</p>
+          <h3>Eighteen hours, cold</h3>
+          <p>Dry Kabuli chickpeas go into cold water the night before with a pinch of baking soda to soften the skins.</p>
+          <p class="spec">18 h · 4 °C · 1:3 bean to water</p>
+        </div>
+
+        <div class="step">
+          <p class="n">STEP 02 — PEEL</p>
+          <h3>Every skin comes off</h3>
+          <p>The slipped skins get rubbed away by hand before the cook. It's the slowest part of the day and the reason the texture is what it is.</p>
+          <p class="spec">~40 min per 20 kg batch</p>
+        </div>
+
+        <div class="step">
+          <p class="n">STEP 03 — MILL</p>
+          <h3>Tahini, ground on stone</h3>
+          <p>Hulled sesame roasted light and milled between stones, so it stays loose and pourable instead of turning bitter.</p>
+          <p class="spec">Roast 118 °C · single-pass stone mill</p>
+        </div>
+
+        <div class="step">
+          <p class="n">STEP 04 — WHIP</p>
+          <h3>Ice water, long blend</h3>
+          <p>Iced water goes in slowly at the end. It keeps the friction heat down and takes the hummus pale and airy.</p>
+          <p class="spec">7 min · finish below 20 °C</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="specs" id="specs">
+    <div class="wrap">
+
+      <div class="nutrition">
+        <h3>Nutrition Facts</h3>
+        <div class="r-thin"></div>
+        <div class="serv"><span>About 9 servings per container</span></div>
+        <div class="serv" style="font-weight:700"><span>Serving size</span><span>2 tbsp (30g)</span></div>
+        <div class="r-thick"></div>
+        <div class="cal"><span>Calories</span><span>70</span></div>
+        <div class="r-med"></div>
+        <div class="dv">% Daily Value*</div>
+        <dl>
+          <div class="row"><span><b>Total Fat</b> 5g</span><b>6%</b></div>
+          <div class="row in"><span>Saturated Fat 0.5g</span><b>3%</b></div>
+          <div class="row in"><span>Trans Fat 0g</span><span></span></div>
+          <div class="row"><span><b>Cholesterol</b> 0mg</span><b>0%</b></div>
+          <div class="row"><span><b>Sodium</b> 115mg</span><b>5%</b></div>
+          <div class="row"><span><b>Total Carbohydrate</b> 5g</span><b>2%</b></div>
+          <div class="row in"><span>Dietary Fiber 2g</span><b>7%</b></div>
+          <div class="row in"><span>Total Sugars 0g</span><span></span></div>
+          <div class="row in2"><span>Includes 0g Added Sugars</span><b>0%</b></div>
+          <div class="row"><span><b>Protein</b> 2g</span><span></span></div>
+        </dl>
+        <div class="r-med" style="margin-top:4px"></div>
+        <dl>
+          <div class="row"><span>Iron 0.7mg</span><b>4%</b></div>
+          <div class="row"><span>Calcium 15mg</span><b>2%</b></div>
+          <div class="row" style="border-bottom:none"><span>Potassium 75mg</span><b>2%</b></div>
+        </dl>
+        <div class="r-thin"></div>
+        <p class="foot">*The % Daily Value tells you how much a nutrient in a serving contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+
+      <div class="trade" id="trade">
+        <p class="eyebrow">For buyers &amp; distributors</p>
+        <h2>Cold chain in, case packs out.</h2>
+        <p>We pack to order and ship refrigerated. Short dates are the trade-off for a clean label, so we build delivery schedules around your turns rather than pushing volume you can't sell through.</p>
+        <dl>
+          <div class="line"><dt>CASE PACK</dt><dd>6 × 10 oz (283 g)</dd></div>
+          <div class="line"><dt>CASE NET WT</dt><dd>3.75 lb / 1.70 kg</dd></div>
+          <div class="line"><dt>CASE DIMS</dt><dd>9.5 × 6.5 × 4.0 in</dd></div>
+          <div class="line"><dt>PALLET</dt><dd>12 per layer · 8 layers · 96 cases</dd></div>
+          <div class="line"><dt>SHELF LIFE</dt><dd>21 days from pack date</dd></div>
+          <div class="line"><dt>HOLD TEMP</dt><dd>34–38 °F / 1–3 °C</dd></div>
+          <div class="line"><dt>MINIMUM ORDER</dt><dd>10 cases, mixed SKUs</dd></div>
+          <div class="line"><dt>LEAD TIME</dt><dd>5 business days</dd></div>
+          <div class="line"><dt>GTIN / UPC</dt><dd>Assigned per SKU at first PO</dd></div>
+        </dl>
+        <div class="cta">
+          <a class="btn btn-solid" href="mailto:wholesale@motherhummus.com?subject=Wholesale%20enquiry">Email the wholesale desk</a>
+          <small>wholesale@motherhummus.com</small>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="find">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#A8CB8B">Where to find us</p>
+      <h2>Look in the refrigerated deli case.</h2>
+      <p>We're rolling out store by store rather than all at once, so the map is still short. Tell us where you shop and we'll go talk to them — that's genuinely how most of our accounts have started.</p>
+      <a class="btn btn-line" href="mailto:hello@motherhummus.com?subject=Stock%20request">Request a store</a>
+      <div class="case">
+        <span>PACKED WEEKLY</span>
+        <span>SHIPPED COLD</span>
+        <span>NO PRESERVATIVES</span>
+        <span>21-DAY DATE</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="mark" href="#top"><i></i>Mother Hummus</a>
+    <span><a href="mailto:hello@motherhummus.com">hello@motherhummus.com</a></span>
+    <span><a href="mailto:wholesale@motherhummus.com">Wholesale desk</a></span>
+    <span>Keep refrigerated at 34–38 °F</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var cv = document.getElementById("bowl");
+  if(!cv || !cv.getContext) return;
+  var ctx = cv.getContext("2d");
+  var S = 920, C = S/2;
+
+  // Fixed colours: this is an illustration of a physical object, so the
+  // food keeps its own colour in either theme. Only the page around it flips.
+  var DISH   = "#FAF7EE";
+  var DISH_E = "#E6E0CE";
+  var PASTE  = "#E4D6B4";
+  var GROOVE = "#CDB98D";
+  var RIDGE  = "#F1E7CC";
+  var OIL    = "#A6A03A";
+  var PAPRIKA= "#C0492F";
+  var HERB   = "#4C8B2B";
+
+  function rnd(seed){ var s = seed; return function(){ s = (s*16807)%2147483647; return (s-1)/2147483646; }; }
+  var R = rnd(97);
+
+  // dish
+  ctx.beginPath(); ctx.arc(C,C,436,0,Math.PI*2);
+  ctx.fillStyle = DISH; ctx.fill();
+  ctx.lineWidth = 10; ctx.strokeStyle = DISH_E; ctx.stroke();
+
+  // paste bed
+  var bed = ctx.createRadialGradient(C-70,C-90,40,C,C,392);
+  bed.addColorStop(0,"#EFE4C8"); bed.addColorStop(.72,PASTE); bed.addColorStop(1,"#D3C099");
+  ctx.beginPath(); ctx.arc(C,C,392,0,Math.PI*2); ctx.fillStyle = bed; ctx.fill();
+
+  ctx.save();
+  ctx.beginPath(); ctx.arc(C,C,392,0,Math.PI*2); ctx.clip();
+
+  // spoon-swirl: one spiral groove with a lit ridge riding just outside it
+  function spiral(offX, offY, colour, width, alpha){
+    ctx.beginPath();
+    for(var t=0; t<=Math.PI*2*3.35; t+=0.02){
+      var r = 372 - t*14.2;
+      if(r < 74) break;
+      var wob = Math.sin(t*5.5)*3.4;
+      var x = C + Math.cos(t)*(r+wob) + offX;
+      var y = C + Math.sin(t)*(r+wob)*0.985 + offY;
+      if(t===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = colour; ctx.lineWidth = width; ctx.lineCap = "round";
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+  spiral(0, 10, GROOVE, 21, .85);
+  spiral(-2, -7, RIDGE, 13, .8);
+
+  // oil well, slightly off-centre the way a real spoon leaves it
+  var well = ctx.createRadialGradient(C+6,C-4,6,C+10,C+6,104);
+  well.addColorStop(0,"#C9C258"); well.addColorStop(.55,OIL); well.addColorStop(1,"rgba(140,134,40,.55)");
+  ctx.beginPath(); ctx.ellipse(C+10,C+4,102,84,-0.22,0,Math.PI*2);
+  ctx.fillStyle = well; ctx.fill();
+  ctx.globalAlpha=.34; ctx.beginPath(); ctx.ellipse(C-18,C-26,34,20,-0.5,0,Math.PI*2);
+  ctx.fillStyle="#F2EEA8"; ctx.fill(); ctx.globalAlpha=1;
+
+  // whole chickpeas around the well
+  var peas = [[C-150,C+70],[C+168,C-96],[C+96,C+150],[C-92,C-168],[C+206,C+66],[C-206,C-54],[C+38,C-198],[C-52,C+214]];
+  peas.forEach(function(p){
+    var a = R()*Math.PI, rx = 27+R()*5, ry = 22+R()*4;
+    var g = ctx.createRadialGradient(p[0]-8,p[1]-9,3,p[0],p[1],rx);
+    g.addColorStop(0,"#F3E9CF"); g.addColorStop(1,"#C9B285");
+    ctx.beginPath(); ctx.ellipse(p[0],p[1],rx,ry,a,0,Math.PI*2);
+    ctx.fillStyle=g; ctx.fill();
+    ctx.globalAlpha=.5; ctx.beginPath();
+    ctx.ellipse(p[0]-7,p[1]-8,rx*0.3,ry*0.22,a,0,Math.PI*2);
+    ctx.fillStyle="#FFFBEF"; ctx.fill(); ctx.globalAlpha=1;
+  });
+
+  // paprika dust
+  for(var i=0;i<130;i++){
+    var ang = R()*Math.PI*2, rad = 96 + R()*286;
+    ctx.globalAlpha = .12 + R()*.45;
+    ctx.beginPath();
+    ctx.arc(C+Math.cos(ang)*rad, C+Math.sin(ang)*rad, .9+R()*2.6, 0, Math.PI*2);
+    ctx.fillStyle = PAPRIKA; ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  // parsley
+  [[C-118,C-96],[C+130,C+118],[C-24,C+176],[C+186,C-16]].forEach(function(p){
+    var a = R()*Math.PI;
+    ctx.save(); ctx.translate(p[0],p[1]); ctx.rotate(a);
+    ctx.globalAlpha=.9;
+    for(var k=0;k<3;k++){
+      ctx.beginPath();
+      ctx.ellipse(k*9-9, (k%2)*7-3, 8, 4.6, k*1.1, 0, Math.PI*2);
+      ctx.fillStyle = k%2 ? "#5FA337" : HERB; ctx.fill();
+    }
+    ctx.globalAlpha=1; ctx.restore();
+  });
+
+  // inner shadow so the paste sits down in the dish
+  var sh = ctx.createRadialGradient(C,C,320,C,C,394);
+  sh.addColorStop(0,"rgba(90,72,36,0)"); sh.addColorStop(1,"rgba(90,72,36,.34)");
+  ctx.beginPath(); ctx.arc(C,C,392,0,Math.PI*2); ctx.fillStyle=sh; ctx.fill();
+
+  ctx.restore();
+})();
+</script>
+
+</body>
+</html>
